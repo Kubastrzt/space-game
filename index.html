@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Gra</title>
+</head>
+<body>
+    <canvas id="canvas-game"></canvas>
+    <div class="endScreen">
+        <p class="ending-type-lose">PRZEGRAŁEŚ</p>
+        <p class="ending-type-win">WYGRAŁEŚ</p>
+    </div>
+    <img src="/spejsship.png" id= "playerSpace" alt="">
+    <img src="/oponent.png" id= "enemySpace" alt="">
+    <div class="info">
+        <div class="health-bar">
+            <p>HEALTH:</p>
+            <p class="health">3</p>
+        </div>
+        <div class="ammunition">
+            <p>AMMUNITION:</p>
+            <p class="ammo"></p>
+        </div>
+    </div>
+    <script type="module" src="stack.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
