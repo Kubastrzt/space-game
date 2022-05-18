@@ -1,31 +1,5 @@
-/*=============================================================
-  Filename: CanvasStack-2v01.js
-  Rev: 2
-  By: A.R.Collins
-  Description: Utilities to create multiple transparent
-  canvas layers suitable for animation.
-  License: Released into the public domain
-  latest version at
-  <http://www/arc.id.au/CanvasLayers.html>
-
-  Date   |Description                                      |By
-  -------------------------------------------------------------
-  30Oct09 Rev 1.00 First release                            ARC
-  08Sep12 bugfix: test for emulator failed in IE9           ARC
-  02Mar13 Re-write to use screen canvas as background       ARC
-  28Jul13 remove getOverlayCanvas (use getElementById)
-          Tidy for JSLint                                   ARC
-  20Jul14 Setup a resize handler for layers, required when
-          canvas size changes on window resize (width in %).
-          Dropped excanvas support                          ARC
-  18Sep19 Re-factor to simplify                             ARC
-  21Sep19 Convert to Classes etc                            ARC
-  30Sep19 Added addResizeCallback method                    
-          Released as Rev 2v00                              ARC
-  01Jan20 Add Layer.dragObjects to match Cango Layer        ARC 
-  =============================================================*/
-
-  var CanvasStack;
+// CANVAS LAYERS
+const CanvasStack;
 
   (function()
   {
@@ -206,25 +180,25 @@
   
   }());
 
-var canvas=document.querySelector('#canvas-game')
+const canvas=document.querySelector('#canvas-game')
 canvas.width=window.innerWidth
 canvas.height=window.innerHeight
 // PLAYER CONTEXT
-var ctx=canvas.getContext('2d')
-var canvas_stack = new CanvasStack('canvas-game')
+const ctx=canvas.getContext('2d')
+const canvas_stack = new CanvasStack('canvas-game')
 
-var layer0 = canvas_stack.createLayer()
-var layer0_ctx = document.getElementById(layer0).getContext('2d')
-var spaceShip = document.querySelector('#playerSpace')
+const layer0 = canvas_stack.createLayer()
+const layer0_ctx = document.getElementById(layer0).getContext('2d')
+const spaceShip = document.querySelector('#playerSpace')
 // FRACTILES CONTEXT LAYER 1
-var layer1 = canvas_stack.createLayer()
-var layer1_ctx = document.getElementById(layer1).getContext('2d')
+const layer1 = canvas_stack.createLayer()
+const layer1_ctx = document.getElementById(layer1).getContext('2d')
 // ENEMIES CONTEXT LAYER 2
-var layer2 = canvas_stack.createLayer()
-var layer2_ctx = document.getElementById(layer2).getContext('2d')
-var enemyShip = document.querySelector('#enemySpace')
+const layer2 = canvas_stack.createLayer()
+const layer2_ctx = document.getElementById(layer2).getContext('2d')
+const enemyShip = document.querySelector('#enemySpace')
 
-var mouse = {
+let mouse = {
     x: 0,
     y: 0
 }
@@ -266,11 +240,11 @@ function Player(x,y){
 }
 // PLAYER CREATION
 
-var player
+const player
 function createPlayer(){
     player=null
-    var x= 0
-    var y= canvas.height/2
+    let x= 0
+    let y= canvas.height/2
     player= new Player(x,y)
 }
 
@@ -306,9 +280,9 @@ const health=document.querySelector('.health')
 const ammo=document.querySelector('.ammo')
 // AMMO VARS 
 
-var lostAmmo=0
-var maxAmmo=50
-var maxAmmoDisplay=maxAmmo
+let lostAmmo=0
+let maxAmmo=50
+let maxAmmoDisplay=maxAmmo
 ammo.innerHTML = maxAmmoDisplay
 
 // RELOADING
@@ -322,13 +296,13 @@ function realod(){
 
 // FRACTILES CREATION (AMMUNITION)
 
-var fractal=[]
+let fractal=[]
 window.addEventListener('click', ()=>{
   if(lostAmmo<maxAmmo)
   {
-        var x= 180
-        var y= mouse.y
-        var dx= 4
+        let x= 180
+        let y= mouse.y
+        let dx= 4
         lostAmmo++
         maxAmmoDisplay--
         ammo.innerHTML = maxAmmoDisplay
@@ -344,7 +318,7 @@ window.addEventListener('click', ()=>{
 
 // ENEMIES
 
-var objectDestroyed= 0
+let objectDestroyed= 0
 function Enemies(x,y,dx,dy){
   this.x = x
   this.y = y
@@ -367,9 +341,9 @@ function Enemies(x,y,dx,dy){
 
 // ENEMY CREATION
 
-var countToEnd=0
-var gamesCount=5
-var enemies=[]
+let countToEnd=0
+let gamesCount=5
+let enemies=[]
 function createEnemies(){
   if(countToEnd>gamesCount) return 
     for(let i=0;i<10;i++){
@@ -474,6 +448,3 @@ function animate(){
 createEnemies()
 createPlayer()
 animate()
-
-
-
